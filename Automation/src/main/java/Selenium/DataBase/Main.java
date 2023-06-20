@@ -19,11 +19,13 @@ public class Main {
                 int comparisonId = resultSet.getInt("ComparisonId");
                 double ramiLeviPrice = resultSet.getDouble("Rami_Levi_Cart_Price");
                 double haziHinamPrice = resultSet.getDouble("Hazi_Hinam_Cart_Price");
+                double shufersalPrice = resultSet.getDouble("Shufersal_Cart_Price");
                 String date = resultSet.getString("Date");
 
                 System.out.println("Comparison ID: " + comparisonId);
                 System.out.println("Rami Levi Cart Price: " + ramiLeviPrice);
                 System.out.println("Hazi Hinam Cart Price: " + haziHinamPrice);
+                System.out.println("Shufersal Cart Price: " + shufersalPrice);
                 System.out.println("Date: " + date);
                 System.out.println("-------------------------");
             }

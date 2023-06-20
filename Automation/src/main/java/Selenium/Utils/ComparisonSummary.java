@@ -5,6 +5,7 @@ import java.text.DecimalFormat;
 import Selenium.Supermarkets.Products;
 import java.util.List;
 import static Selenium.DataBase.PriceComparisonDao.insertComparison;
+import static Selenium.DataBase.PriceComparisonDao.insertComparisonDetails;
 
 public class ComparisonSummary {
 
@@ -13,12 +14,17 @@ public class ComparisonSummary {
         double ramiLeviTotal = SumCart.sumRLCart(productsList);
         double haziHinamTotal = SumCart.sumHHCart(productsList);
         double shufersalTotal = SumCart.sumShufersalCart(productsList);
-        insertComparison(ramiLeviTotal, haziHinamTotal);
+        int comparisonId = insertComparison(ramiLeviTotal, haziHinamTotal, shufersalTotal);
+
 
         for (Products product : productsList) {
             product.setTotalHhProductPrice(product.getHaziHinamPrice(), product.getAmount());
             product.setTotalRlProductPrice(product.getRamiLeviPrice(), product.getAmount());
             product.setTotalShufersalProductPrice(product.getShufersalPrice(), product.getAmount());
+            insertComparisonDetails(comparisonId, product.getHebrewName(),product.getAmount(),
+                    product.getRamiLeviPrice(), product.getHaziHinamPrice(), product.getShufersalPrice(),
+                    product.getTotalRlProductPrice(), product.getTotalHhProductPrice(),
+                    product.getTotalShufersalProductPrice());
             System.out.println("מחיר ליחידה ברמי לוי עבור " + product.getHebrewName() + ":");
             System.out.println(decimalFormat.format(product.getRamiLeviPrice()));
             System.out.println("סכום כולל ברמי לוי עבור " + product.getHebrewName() + ":");

@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class Products {
 
     private String hebrewName;
+    private String productNumber;
     private double shufersalPrice;
     private double totalShufersalProductPrice;
     private double ramiLeviPrice;
@@ -16,6 +17,7 @@ public class Products {
     private double TotalHhProductPrice;
 
     public Products(String name) {
+        this.productNumber = "";
         this.hebrewName = "";
         this.ramiLeviPrice = 0.0;
         this.haziHinamPrice = 0.0;
@@ -51,7 +53,6 @@ public class Products {
     public void setHaziHinamPrice(double haziHinamPrice) {
         this.haziHinamPrice = haziHinamPrice;
     }
-
 
     public double getShufersalPrice() {
         return shufersalPrice;
@@ -91,8 +92,16 @@ public class Products {
         return totalShufersalProductPrice;
     }
 
-    public void setTotalShufersalProductPrice(double totalShufersalProductPrice, int amount) {
-        this.totalShufersalProductPrice = shufersalPrice * this.amount;
+    public void setTotalShufersalProductPrice(double shufersalPrice, int amount) {
+        this.totalShufersalProductPrice = shufersalPrice * amount;
+    }
+
+    public String getProductNumber() {
+        return productNumber;
+    }
+
+    public void setProductNumber(String productNumber) {
+        this.productNumber = productNumber;
     }
 
     private static final Scanner scanner = new Scanner(System.in);
@@ -106,6 +115,7 @@ public class Products {
         for (int i = 0; i < numberOfProducts; i++) {
             String productName = "product " + (i + 1);
             Products product = new Products(productName);
+            product.setProductNumber(String.valueOf(i + 1));
             System.out.print("What product would you like to order? ");
             String hebrewName = scanner.nextLine();
             product.setHebrewName(hebrewName);
