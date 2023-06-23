@@ -1,12 +1,13 @@
-package RamiLeviTests;
+package Selenium.Tests;
 
-import Selenium.Supermarkets.RamiLevi.Pages.RamiLeviProductPage;
-import Selenium.Supermarkets.RamiLevi.Pages.RamiLeviSearchResultPage;
+import Selenium.Pages.RamiLeviProductPage;
+import Selenium.Pages.RamiLeviSearchResultPage;
 import Selenium.Utils.SeleniumDriver;
+import Selenium.Utils.UrlsManager;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.chrome.ChromeDriver;
-import Selenium.Supermarkets.RamiLevi.Pages.RamiLeviHomePage;
+import Selenium.Pages.RamiLeviHomePage;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
@@ -17,13 +18,13 @@ WebDriverWait wait;
         ChromeDriver driver = SeleniumDriver.initializeDriver();
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-        String url = "https://www.rami-levy.co.il/he";
-        driver.get(url);
+        driver.get(UrlsManager.ramiLeviUrl);
         String productName = "מלפפון";
         RamiLeviHomePage.performSearch(wait, productName);
         RamiLeviSearchResultPage.selectProduct(wait, productName);
         String productId = RamiLeviProductPage.getRLProductId(wait);
-        Assertions.assertEquals("101", productId);
+        Assertions.assertEquals("101", productId, "Failed to find the desired product in Rami Levi");
+        System.out.println("Product found successfully");
         SeleniumDriver.quitDriver(driver);
     }
 }

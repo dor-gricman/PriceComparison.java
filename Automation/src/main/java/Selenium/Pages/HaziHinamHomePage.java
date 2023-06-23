@@ -1,4 +1,4 @@
-package Selenium.Supermarkets.HaziHinam.Pages;
+package Selenium.Pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;

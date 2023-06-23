@@ -12,7 +12,7 @@ public class Main {
         try (Connection connection = DriverManager.getConnection(url);
              Statement statement = connection.createStatement()) {
 
-            String sql = "SELECT * FROM PriceComparison";
+            String sql = "SELECT * FROM PriceComparisonCommon";
             ResultSet resultSet = statement.executeQuery(sql);
 
             while (resultSet.next()) {

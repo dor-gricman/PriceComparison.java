@@ -1,4 +1,4 @@
-package Selenium.Supermarkets.RamiLevi.Pages;
+package Selenium.Pages;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;

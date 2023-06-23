@@ -1,7 +1,5 @@
 package Selenium.Utils;
 
-import Selenium.Supermarkets.Products;
-
 import java.util.List;
 
 public class SumCart {

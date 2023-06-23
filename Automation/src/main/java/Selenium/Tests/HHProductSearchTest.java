@@ -1,8 +1,9 @@
-package HaziHinamTests;
+package Selenium.Tests;
 
-import Selenium.Supermarkets.HaziHinam.Pages.HaziHinamHomePage;
-import Selenium.Supermarkets.HaziHinam.Pages.HaziHinamProductPage;
+import Selenium.Pages.HaziHinamHomePage;
+import Selenium.Pages.HaziHinamProductPage;
 import Selenium.Utils.SeleniumDriver;
+import Selenium.Utils.UrlsManager;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -17,12 +18,13 @@ WebDriverWait wait;
         ChromeDriver driver = SeleniumDriver.initializeDriver();
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-        String url = "https://www.hazi-hinam.co.il/";
-        driver.get(url);
+
+        driver.get(UrlsManager.haziHinamUrl);
         String productName = "פלפל אדום";
         HaziHinamHomePage.performSearch(wait, productName);
         String productId = HaziHinamProductPage.getProductId(wait);
-        Assertions.assertEquals("12872", productId);
+        Assertions.assertEquals("12872", productId, "Failed to find the desired product in Hazi Hinam");
+        System.out.println("Product found successfully");
         SeleniumDriver.quitDriver(driver);
     }
 }
