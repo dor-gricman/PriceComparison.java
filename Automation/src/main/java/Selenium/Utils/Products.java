@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 public class Products {
 
+    // Product information
     private String productName;
     private String ramiLeviProductName;
     private String haziHinamProductName;
@@ -123,16 +124,18 @@ public class Products {
 
     private static final Scanner scanner = new Scanner(System.in);
 
+    // Generate shopping cart based on user input
     public static List<Products> generateShoppingCart() {
         List<Products> shoppingCart = new ArrayList<>();
         System.out.print("How many products would you like to order? ");
         int numberOfProducts = scanner.nextInt();
         scanner.nextLine();
-
+        // Loop through the number of products the user wants to order
         for (int i = 0; i < numberOfProducts; i++) {
             Products product = new Products();
             System.out.println("Would you like to search for the same product name in all supermarkets? (Y/N)");
             String answer = scanner.nextLine();
+            // If the user wants to search for the same product name in all supermarkets
             if (answer.equalsIgnoreCase("Y")) {
                 System.out.print("What product would you like to order? ");
                 String productName = scanner.nextLine();
@@ -142,6 +145,7 @@ public class Products {
                 scanner.nextLine();
                 product.setAmount(units);
                 shoppingCart.add(product);
+                // If the user wants to search for different product names in all supermarkets
             } else {
                 System.out.print("What is the name of the product at Rami Levi? ");
                 String ramiLeviProductName = scanner.nextLine();
@@ -156,10 +160,10 @@ public class Products {
                 int units = scanner.nextInt();
                 scanner.nextLine();
                 product.setAmount(units);
-                shoppingCart.add(product);
+                shoppingCart.add(product);// Add the product to the shopping cart
             }
         }
         scanner.close();
-        return shoppingCart;
+        return shoppingCart;// Return the shopping cart
     }
 }
