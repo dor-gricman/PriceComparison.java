@@ -11,7 +11,7 @@ import java.util.Locale;
 public class PriceComparisonDao {
 
    public static int insertComparison(double ramiLeviTotal, double haziHinamTotal, double shufersalTotal) throws SQLException {
-      Connection connection = Connect.connectToDatabase();
+      Connection connection = SQLiteConnection.connectToDatabase();
       int comparisonId = -1;
       String sql = "INSERT INTO PriceComparisonCommon (Rami_Levi_Cart_Price, Hazi_Hinam_Cart_Price, Shufersal_Cart_Price, Date) VALUES (?, ?, ?, ?)";
 
@@ -38,7 +38,7 @@ public class PriceComparisonDao {
         return comparisonId;
    }
    public static void insertComparisonDetails(int comparisonId, String productName, int numberOfUnits, double RLProductPrice, double HHProductPrice, double SProductPrice, double RL_Total_Product_Price, double HH_Total_Product_Price, double Shufersal_Total_Product_Price) throws SQLException {
-      Connection connection = Connect.connectToDatabase();
+      Connection connection = SQLiteConnection.connectToDatabase();
       String sql = "INSERT INTO Comparison_Details (Comparison_Id, Product_Name, Number_Of_Units, RL_Product_Price_Per_Unit, HH_Product_Price_Per_Unit, Shufersal_Price_Per_Unit, RL_Total_Product_Price, HH_Total_Product_Price, Shufersal_Total_Product_Price, Date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
       try (PreparedStatement statement = connection.prepareStatement(sql)) {
