@@ -24,18 +24,18 @@ public class HaziHinamCommon {
     public void getProductPrices(List<Products> products) throws InterruptedException {
         driver.get(UrlsManager.haziHinamUrl);
 
-        for (Products product : products) {
+        for (Products product : products) {// Iterate over the products list
             String hzaHinamProductName = product.getHaziHinamProductName();
             String productName;
-            if (hzaHinamProductName.length() > 0) {
+            if (hzaHinamProductName.length() > 0) {// If the product has a specific name in Hazi Hinam, use it
                 productName = hzaHinamProductName;
-            } else {
+            } else {// Otherwise, use the product name
                 productName = product.getProductName();
             }
             try {
-                HaziHinamHomePage.performSearch(wait, productName);
-                double productPrice = HaziHinamProductPage.getProductPrice(wait);
-                product.setHaziHinamPrice(productPrice);
+                HaziHinamHomePage.performSearch(wait, productName);// Search for the product in Hazi Hinam
+                double productPrice = HaziHinamProductPage.getProductPrice(wait);// Get the product price
+                product.setHaziHinamPrice(productPrice);// Set the product price
 
             } catch (TimeoutException e) {
                 System.out.println("לא נמצא המוצר " + productName + "." +

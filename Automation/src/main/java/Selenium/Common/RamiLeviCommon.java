@@ -23,22 +23,22 @@ public class RamiLeviCommon {
 
     public void getProductPrices(List<Products> products) throws InterruptedException {
         driver.get(UrlsManager.ramiLeviUrl);
-
+        // Iterate over the products list
         for (Products product : products) {
             String ramiLeviProductName = product.getRamiLeviProductName();
             String productName;
-            if (ramiLeviProductName.length() > 0) {
+            if (ramiLeviProductName.length() > 0) {// If the product has a specific name in Rami Levi, use it
                 productName = ramiLeviProductName;
-            } else {
+            } else {// Otherwise, use the product name
                 productName = product.getProductName();
             }
 
             try {
-                RamiLeviHomePage.performSearch(wait, productName);
-                RamiLeviSearchResultPage.selectProduct(wait, productName);
-                double productPrice = RamiLeviProductPage.getProductPrice(wait);
-                product.setRamiLeviPrice(productPrice);
-                RamiLeviProductPage.closeProductWindow(driver);
+                RamiLeviHomePage.performSearch(wait, productName);// Search for the product in Rami Levi
+                RamiLeviSearchResultPage.selectProduct(wait, productName);// Select the product from the search results
+                double productPrice = RamiLeviProductPage.getProductPrice(wait);// Get the product price
+                product.setRamiLeviPrice(productPrice);// Set the product price
+                RamiLeviProductPage.closeProductWindow(driver);// Close the product window
 
             } catch (TimeoutException e) {
                 System.out.println("לא נמצא המוצר " + productName + "." +

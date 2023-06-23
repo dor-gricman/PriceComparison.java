@@ -14,7 +14,7 @@ import java.time.Duration;
 public class RLProductSearchTest {
 WebDriverWait wait;
     @Test
-    public void productSearchTest() throws InterruptedException {
+    public void productSearchTest() throws InterruptedException {// This class is used to test the product search functionality in Rami Levi
         ChromeDriver driver = SeleniumDriver.initializeDriver();
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
@@ -23,7 +23,7 @@ WebDriverWait wait;
         RamiLeviHomePage.performSearch(wait, productName);
         RamiLeviSearchResultPage.selectProduct(wait, productName);
         String productId = RamiLeviProductPage.getRLProductId(wait);
-        Assertions.assertEquals("101", productId, "Failed to find the desired product in Rami Levi");
+        Assertions.assertEquals("101", productId, "Failed to find the desired product in Rami Levi");// Assert that the product ID is the desired one
         System.out.println("Product found successfully");
         SeleniumDriver.quitDriver(driver);
     }

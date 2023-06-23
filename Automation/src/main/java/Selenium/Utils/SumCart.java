@@ -3,6 +3,7 @@ package Selenium.Utils;
 import java.util.List;
 
 public class SumCart {
+    // Sum the total price of the cart
     public static double sumRLCart(List<Products> products) {
         double cartTotal = 0;
         for (Products product : products) {

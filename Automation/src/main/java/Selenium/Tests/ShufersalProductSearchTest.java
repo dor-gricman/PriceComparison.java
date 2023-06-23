@@ -11,7 +11,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
-public class ShufersalProductSearchTest {
+public class ShufersalProductSearchTest {// This class is used to test the product search functionality in Shufersal
     WebDriverWait wait;
 
     @Test
@@ -25,8 +25,7 @@ public class ShufersalProductSearchTest {
         ShufersalSearchResultPage.selectProduct(wait, productName);
         Thread.sleep(2000);
         String productId = ShufersalProductPage.getProductId(driver);
-
-        Assertions.assertEquals("480", productId, "Failed to find the desired product in Shufersal");
+        Assertions.assertEquals("480", productId, "Failed to find the desired product in Shufersal");// Assert that the product ID is the desired one
         System.out.println("Product found successfully");
 
         SeleniumDriver.quitDriver(driver);

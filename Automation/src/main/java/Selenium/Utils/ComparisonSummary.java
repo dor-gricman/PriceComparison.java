@@ -9,24 +9,26 @@ import static Selenium.DataBase.PriceComparisonDao.insertComparison;
 import static Selenium.DataBase.PriceComparisonDao.insertComparisonDetails;
 
 public class ComparisonSummary {
-
+    // Print the summary of the comparison
     public static void Sum(List<Products> productsList) throws SQLException {
         DecimalFormat decimalFormat = new DecimalFormat("0.00");
         double ramiLeviTotal = SumCart.sumRLCart(productsList);
         double haziHinamTotal = SumCart.sumHHCart(productsList);
         double shufersalTotal = SumCart.sumShufersalCart(productsList);
-        int comparisonId = insertComparison(ramiLeviTotal, haziHinamTotal, shufersalTotal);
+        int comparisonId = insertComparison(ramiLeviTotal, haziHinamTotal, shufersalTotal); //insert comparison to DB and returns comparison id
 
-
+        // Iterate over each product in the list
         for (Products product : productsList) {
             product.setTotalHHProductPrice(product.getHaziHinamPrice(), product.getAmount());
             product.setTotalRLProductPrice(product.getRamiLeviPrice(), product.getAmount());
             product.setTotalShufersalProductPrice(product.getShufersalPrice(), product.getAmount());
-            insertComparisonDetails(comparisonId, product.getProductName(), product.getAmount(),
+            insertComparisonDetails(comparisonId, product.getProductName(), product.getAmount(), //insert comparison details to DB
                     product.getRamiLeviPrice(), product.getHaziHinamPrice(), product.getShufersalPrice(),
                     product.getTotalRLProductPrice(), product.getTotalHHProductPrice(),
                     product.getTotalShufersalProductPrice());
+            // Check if a specific supermarket product name is provided
             if (product.getRamiLeviProductName().length() > 0) {
+                // Print the product name and price
                 System.out.println("מחיר ליחידה ברמי לוי עבור " + product.getRamiLeviProductName() + ":");
                 System.out.println(decimalFormat.format(product.getRamiLeviPrice()));
                 System.out.println("סכום כולל ברמי לוי עבור " + product.getRamiLeviProductName() + ":");
@@ -52,6 +54,7 @@ public class ComparisonSummary {
                 System.out.println(decimalFormat.format(product.getTotalShufersalProductPrice()));
             }
         }
+        // Print the total cart price for each supermarket
         System.out.println("סכום עגלה כולל ברמי לוי:");
         System.out.println(decimalFormat.format(ramiLeviTotal));
         System.out.println("סכום עגלה כולל בחצי חינם:");

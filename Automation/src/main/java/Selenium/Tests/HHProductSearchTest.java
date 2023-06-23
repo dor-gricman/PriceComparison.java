@@ -10,7 +10,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
-public class HHProductSearchTest {
+public class HHProductSearchTest {// This class is used to test the product search functionality in Hazi Hinam
 WebDriverWait wait;
 
     @Test
@@ -18,12 +18,11 @@ WebDriverWait wait;
         ChromeDriver driver = SeleniumDriver.initializeDriver();
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-
         driver.get(UrlsManager.haziHinamUrl);
         String productName = "פלפל אדום";
         HaziHinamHomePage.performSearch(wait, productName);
         String productId = HaziHinamProductPage.getProductId(wait);
-        Assertions.assertEquals("12872", productId, "Failed to find the desired product in Hazi Hinam");
+        Assertions.assertEquals("12872", productId, "Failed to find the desired product in Hazi Hinam");// Assert that the product ID is the desired one
         System.out.println("Product found successfully");
         SeleniumDriver.quitDriver(driver);
     }
