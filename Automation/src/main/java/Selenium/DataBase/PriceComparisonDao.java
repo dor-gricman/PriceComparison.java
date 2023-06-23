@@ -13,7 +13,7 @@ public class PriceComparisonDao {
    public static int insertComparison(double ramiLeviTotal, double haziHinamTotal, double shufersalTotal) throws SQLException {
       Connection connection = SQLiteConnection.connectToDatabase();
       int comparisonId = -1;
-      String sql = "INSERT INTO PriceComparisonCommon (Rami_Levi_Cart_Price, Hazi_Hinam_Cart_Price, Shufersal_Cart_Price, Date) VALUES (?, ?, ?, ?)";
+      String sql = "INSERT INTO PriceComparison (Rami_Levi_Cart_Price, Hazi_Hinam_Cart_Price, Shufersal_Cart_Price, Date) VALUES (?, ?, ?, ?)";
 
       try (PreparedStatement statement = connection.prepareStatement(sql)) {
          statement.setDouble(1, ramiLeviTotal);
